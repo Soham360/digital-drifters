@@ -4,7 +4,7 @@ services:
     image: gear_gurus_springv1
     build: .
     ports:
-      - "4877:4877"
+      - "8030:8030"
     volumes:
        - ./volumes:/volumes
     restart: unless-stopped
