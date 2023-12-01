@@ -20,30 +20,8 @@ public class CarApiController {
      * @GetMapping annotation is used for mapping HTTP GET requests onto specific handler methods.
      */
     @GetMapping("/")
-    public ResponseEntity<List<Cars>> getCars() {
+    public ResponseEntity<List<Car>> getCars() {
         // ResponseEntity returns List of Cars provide by JPA findAll()
         return new ResponseEntity<>( repository.findAll(), HttpStatus.OK);
-    }
-
-    /* Update Like
-     * @PutMapping annotation is used for mapping HTTP PUT requests onto specific handler methods.
-     * @PathVariable annotation extracts the templated part {id}, from the URI
-     */
-    @PostMapping("/{id}")
-    public ResponseEntity<Cars> setLike(@PathVariable long id) {
-        /* 
-        * Optional (below) is a container object which helps determine if a result is present. 
-        * If a value is present, isPresent() will return true
-        * get() will return the value.
-        */
-        Optional<Cars> optional = repository.findById(id);
-        if (optional.isPresent()) {  // Good ID
-            Cars car = optional.get();  // value from findByID
-            car.setHaha(car.getHaha()+1); // increment value
-            repository.save(car);  // save entity
-            return new ResponseEntity<>(car, HttpStatus.OK);  // OK HTTP response: status code, headers, and body
-        }
-        // Bad ID
-        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);  // Failed HTTP response: status code, headers, and body
     }
 }

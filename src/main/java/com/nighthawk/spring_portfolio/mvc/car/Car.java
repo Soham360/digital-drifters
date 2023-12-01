@@ -10,7 +10,7 @@ import jakarta.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Cars {
+public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -23,7 +23,7 @@ public class Cars {
 }
 
 @Entity
-class BMW extends Cars {
+class BMW extends Car {
     private int wheels;
 
     public String getBMWInfo() {
