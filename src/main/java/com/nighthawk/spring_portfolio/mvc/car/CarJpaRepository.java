@@ -11,5 +11,4 @@ public interface CarJpaRepository extends JpaRepository<Car, Long> {
     */
     void save(String Car);
     List<Car> findAllByOrderByCarAsc();
-    List<Car> findByCarIgnoreCase(String car);
 }
