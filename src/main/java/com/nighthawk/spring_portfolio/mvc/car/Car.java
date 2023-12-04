@@ -6,66 +6,95 @@ import lombok.NoArgsConstructor;
 
 import jakarta.persistence.*;
 
-@Data
+@Data  // Annotations to simplify writing code (ie constructors, setters)
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 public class Car {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    // email, password, roles are key attributes to login and authentication
+    @Column(unique=true)
+    private String name;
 
-    private int steeringwheel;
+    private int topspeed;
+    private int price;
+    private int range;
+    private int capacity;
 
-    public String getCarInfo() {
-        return "Car with ID: " + id + ", Steering Wheel: " + steeringwheel;
+    public Car(String name, int topspeed, int price, int range, int capacity) {
+        this.name = name;
+        this.topspeed = topspeed;
+        this.price = price;
+        this.range = range;
+        this.capacity = capacity;
     }
-}
-
-@Entity
-class BMW extends Car {
-    private int wheels;
-
-    public String getBMWInfo() {
-        return "BMW with ID: " + getId() + ", Wheels: " + wheels;
+    public String getName() {
+        return name;
     }
-}
-
-@Entity
-class BMW_X7 extends BMW {
-    private String name = "BMW X7";
-    private int price = 81900;
-    private int capacity = 7;
-    private double range = 547.5;
-    private int topSpeed = 130;
-
-    public String getBMW_X7Info() {
-        return "BMW X7: " + getBMWInfo() + ", Name: " + name + ", Price: " + price + ", Capacity: " + capacity + ", Range: " + range + ", Top Speed: " + topSpeed;
+    public void setName(String newName) {
+        this.name = newName;
     }
-}
-
-@Entity
-class BMW_8 extends BMW {
-    private String name = "BMW 8";
-    private int price = 90800;
-    private int capacity = 347;
-    private double range = 5427.5;
-    private int topSpeed = 130;
-
-    public String getBMW_8Info() {
-        return "BMW 8: " + getBMWInfo() + ", Name: " + name + ", Price: " + price + ", Capacity: " + capacity + ", Range: " + range + ", Top Speed: " + topSpeed;
+    public int getTopspeed() {
+        return topspeed;
     }
-}
+    public void setTopspeed(int newTopspeed) {
+        this.topspeed = newTopspeed;
+    }
+    public int getPrice() {
+        return price;
+    }
+    public void setPrice(int newPrice) {
+        this.price = newPrice;
+    }
+    public int getRange() {
+        return range;
+    }
+    public void setRange(int newRange) {
+        this.range = newRange;
+    }
+    public int getCapacity() {
+        return capacity;
+    }
+    public void setCapacity(int newCapacity) {
+        this.capacity = newCapacity;
+    }
 
-@Entity
-class BMW_i7 extends BMW {
-    private String name = "BMW i7";
-    private int price = 105700;
-    private int capacity = 23427;
-    private double range = 542342347.5;
-    private int topSpeed = 130;
+    public String toString() {
+        return "Cars [id=" + id + ", name=" + name + ", top speed=" + topspeed + ", price=" + price + ", range=" + range
+                + ", capacity=" + capacity + "]";
+    }
 
-    public String getBMW_i7Info() {
-        return "BMW i7: " + getBMWInfo() + ", Name: " + name + ", Price: " + price + ", Capacity: " + capacity + ", Range: " + range + ", Top Speed: " + topSpeed;
+    public static Car[] init() {
+        // basics of class construction
+        Car p1 = new Car();
+        p1.setName("BMW X7");
+        p1.setTopspeed(130);
+        p1.setPrice(567567);
+        p1.setRange(567657);
+        p1.setCapacity(567567);
+        Car p2 = new Car();
+        p2.setName("BMW 8");
+        p2.setTopspeed(130);
+        p2.setPrice(123123);
+        p2.setRange(123123);
+        p2.setCapacity(12312);
+        Car p3 = new Car();
+        p3.setName("BMW i7");
+        p3.setTopspeed(130);
+        p3.setPrice(123123);
+        p3.setRange(123123);
+        p3.setCapacity(12312);
+        Car car[] = {p1, p2, p3};
+        return(car);
+    }
+    public static void main(String[] args) {
+        // obtain Car from initializer
+        Car car[] = init();
+        // iterate using "enhanced for loop"
+        for( Car test : car) {
+            System.out.println(test);  // print object
+        }
     }
 }

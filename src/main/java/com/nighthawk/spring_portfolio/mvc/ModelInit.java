@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.nighthawk.spring_portfolio.mvc.car.Car;
+import com.nighthawk.spring_portfolio.mvc.car.CarDetailsService;
 import com.nighthawk.spring_portfolio.mvc.jokes.Jokes;
 import com.nighthawk.spring_portfolio.mvc.jokes.JokesJpaRepository;
 import com.nighthawk.spring_portfolio.mvc.note.Note;
@@ -18,6 +20,7 @@ import java.util.List;
 @Component
 @Configuration // Scans Application for ModelInit Bean, this detects CommandLineRunner
 public class ModelInit {  
+    @Autowired CarDetailsService carRepo;
     @Autowired JokesJpaRepository jokesRepo;
     @Autowired NoteJpaRepository noteRepo;
     @Autowired PersonDetailsService personService;
@@ -48,7 +51,13 @@ public class ModelInit {
                     noteRepo.save(n);  // JPA Save                  
                 }
             }
-
+            Car[] carArray = Car.init();
+            for (Car name : carArray) {
+                List<Car> test = carRepo.list(name.getName());  // lookup
+                if (test.size() == 0) {
+                    carRepo.save(name);
+                };
+            }
         };
     }
 }
