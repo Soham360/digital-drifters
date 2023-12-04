@@ -47,6 +47,34 @@ abstract class Fibo {
             System.out.println("fibonacci Sequence " + (i + 1) + " = " + this.getNthSeq(i));
         }
     }
+    public class Main {
+        public static void main(String[] args) {
+            FiboWithForLoop forLoopFibo = new FiboWithForLoop();
+            SortingComparison sortingComparisonFibo = new SortingComparison();
+
+            // Display results
+            System.out.println("=== For Loop Fibonacci ===");
+            forLoopFibo.print();
+
+            System.out.println("\n=== Sorting Comparison Fibonacci ===");
+
+            // Merge Sort
+            System.out.println("\nMerge Sort:");
+            sortingComparisonFibo.runSortingComparison("mergeSort");
+
+            // Bubble Sort
+            System.out.println("\nBubble Sort:");
+            sortingComparisonFibo.runSortingComparison("bubbleSort");
+
+            // Insertion Sort
+            System.out.println("\nInsertion Sort:");
+            sortingComparisonFibo.runSortingComparison("insertionSort");
+
+            // Selection Sort
+            System.out.println("\nSelection Sort:");
+            sortingComparisonFibo.runSortingComparison("selectionSort");
+        }
+    }
 }
 
 class FiboWithForLoop extends Fibo {
@@ -120,6 +148,41 @@ class SortingComparison extends Fibo {
         long selectionSortEndTime = System.nanoTime();
         System.out.println((selectionSortEndTime - selectionSortStartTime) + " ns");
     }
+
+    public void runSortingComparison(String algorithm) {
+        Long[] fibArray = new Long[this.size];
+        for (int i = 0; i < this.size; i++) {
+            fibArray[i] = calculateFibonacci(i);
+        }
+
+        System.out.println("Original Fibonacci Array: " + Arrays.toString(fibArray));
+
+        // Select sorting algorithm based on the input
+        switch (algorithm) {
+            case "mergeSort":
+                System.out.print("Sorted Array (Merge Sort): ");
+                mergeSort(fibArray.clone());
+                break;
+            case "bubbleSort":
+                System.out.print("Sorted Array (Bubble Sort): ");
+                bubbleSort(fibArray.clone());
+                break;
+            case "insertionSort":
+                System.out.print("Sorted Array (Insertion Sort): ");
+                insertionSort(fibArray.clone());
+                break;
+            case "selectionSort":
+                System.out.print("Sorted Array (Selection Sort): ");
+                selectionSort(fibArray.clone());
+                break;
+            default:
+                System.out.println("Invalid sorting algorithm specified.");
+                return;
+        }
+
+        System.out.println(Arrays.toString(fibArray));
+    }
+
 
     private void mergeSort(Long[] arr) {
     mergeSort(arr, 0, arr.length - 1);
