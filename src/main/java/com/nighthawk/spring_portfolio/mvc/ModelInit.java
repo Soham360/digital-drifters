@@ -14,6 +14,7 @@ import com.nighthawk.spring_portfolio.mvc.note.Note;
 import com.nighthawk.spring_portfolio.mvc.note.NoteJpaRepository;
 import com.nighthawk.spring_portfolio.mvc.person.Person;
 import com.nighthawk.spring_portfolio.mvc.person.PersonDetailsService;
+// import com.nighthawk.spring_portfolio.mvc.sortingalgorithms.SortingAlgs;
 
 import java.util.List;
 
@@ -24,6 +25,7 @@ public class ModelInit {
     @Autowired JokesJpaRepository jokesRepo;
     @Autowired NoteJpaRepository noteRepo;
     @Autowired PersonDetailsService personService;
+    // @Autowired SortingAlgs SortingAlgorithm;
 
     @Bean
     CommandLineRunner run() {  // The run() method will be executed after the application starts
@@ -56,8 +58,11 @@ public class ModelInit {
                 List<Car> test = carRepo.list(name.getName());  // lookup
                 if (test.size() == 0) {
                     carRepo.save(name);
-                };
+                };                
             }
+
+            //SpringApplication.run(SortingAlgs.class, args);
+
         };
     }
 }
