@@ -49,6 +49,34 @@ abstract class Fibo {
     }
 }
 
+public class Main {
+        public static void main(String[] args) {
+            FiboWithForLoop forLoopFibo = new FiboWithForLoop();
+            SortingComparison sortingComparisonFibo = new SortingComparison();
+
+            // Display results
+            System.out.println("=== For Loop Fibonacci ===");
+            forLoopFibo.print();
+
+            System.out.println("\n=== Sorting Comparison Fibonacci ===");
+
+            // Merge Sort
+            System.out.println("\nMerge Sort:");
+            sortingComparisonFibo.runSortingComparison("mergeSort");
+
+            // Bubble Sort
+            System.out.println("\nBubble Sort:");
+            sortingComparisonFibo.runSortingComparison("bubbleSort");
+
+            // Insertion Sort
+            System.out.println("\nInsertion Sort:");
+            sortingComparisonFibo.runSortingComparison("insertionSort");
+
+            // Selection Sort
+            System.out.println("\nSelection Sort:");
+            sortingComparisonFibo.runSortingComparison("selectionSort");
+        }
+    }
 class FiboWithForLoop extends Fibo {
     public FiboWithForLoop() {
         super();
@@ -120,6 +148,41 @@ class SortingComparison extends Fibo {
         long selectionSortEndTime = System.nanoTime();
         System.out.println((selectionSortEndTime - selectionSortStartTime) + " ns");
     }
+
+    public void runSortingComparison(String algorithm) {
+        Long[] fibArray = new Long[this.size];
+        for (int i = 0; i < this.size; i++) {
+            fibArray[i] = calculateFibonacci(i);
+        }
+
+        System.out.println("Original Fibonacci Array: " + Arrays.toString(fibArray));
+
+        // Select sorting algorithm based on the input
+        switch (algorithm) {
+            case "mergeSort":
+                System.out.print("Sorted Array (Merge Sort): ");
+                mergeSort(fibArray.clone());
+                break;
+            case "bubbleSort":
+                System.out.print("Sorted Array (Bubble Sort): ");
+                bubbleSort(fibArray.clone());
+                break;
+            case "insertionSort":
+                System.out.print("Sorted Array (Insertion Sort): ");
+                insertionSort(fibArray.clone());
+                break;
+            case "selectionSort":
+                System.out.print("Sorted Array (Selection Sort): ");
+                selectionSort(fibArray.clone());
+                break;
+            default:
+                System.out.println("Invalid sorting algorithm specified.");
+                return;
+        }
+
+        System.out.println(Arrays.toString(fibArray));
+    }
+
 
     private void mergeSort(Long[] arr) {
     mergeSort(arr, 0, arr.length - 1);
@@ -215,6 +278,46 @@ private void selectionSort(Long[] arr) {
         arr[minIndex] = arr[i];
         arr[i] = temp;
     }
+}
+public void print() {
+    Long[] fibArray = new Long[this.size];
+    for (int i = 0; i < this.size; i++) {
+        fibArray[i] = calculateFibonacci(i);
+    }
+
+    System.out.println("Original Fibonacci Array: " + Arrays.toString(fibArray));
+
+    // Merge Sort
+    System.out.print("Merge Sort: ");
+    long mergeSortStartTime = System.nanoTime();
+    Long[] mergeSortedArray = mergeSort(fibArray.clone());
+    long mergeSortEndTime = System.nanoTime();
+    System.out.println(Arrays.toString(mergeSortedArray));
+    System.out.println("Time taken: " + (mergeSortEndTime - mergeSortStartTime) + " ns");
+
+    // Bubble Sort
+    System.out.print("Bubble Sort: ");
+    long bubbleSortStartTime = System.nanoTime();
+    Long[] bubbleSortedArray = bubbleSort(fibArray.clone());
+    long bubbleSortEndTime = System.nanoTime();
+    System.out.println(Arrays.toString(bubbleSortedArray));
+    System.out.println("Time taken: " + (bubbleSortEndTime - bubbleSortStartTime) + " ns");
+
+    // Insertion Sort
+    System.out.print("Insertion Sort: ");
+    long insertionSortStartTime = System.nanoTime();
+    Long[] insertionSortedArray = insertionSort(fibArray.clone());
+    long insertionSortEndTime = System.nanoTime();
+    System.out.println(Arrays.toString(insertionSortedArray));
+    System.out.println("Time taken: " + (insertionSortEndTime - insertionSortStartTime) + " ns");
+
+    // Selection Sort
+    System.out.print("Selection Sort: ");
+    long selectionSortStartTime = System.nanoTime();
+    Long[] selectionSortedArray = selectionSort(fibArray.clone());
+    long selectionSortEndTime = System.nanoTime();
+    System.out.println(Arrays.toString(selectionSortedArray));
+    System.out.println("Time taken: " + (selectionSortEndTime - selectionSortStartTime) + " ns");
 }
 }
 
