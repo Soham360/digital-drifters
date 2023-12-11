@@ -14,7 +14,7 @@ import com.nighthawk.spring_portfolio.mvc.note.Note;
 import com.nighthawk.spring_portfolio.mvc.note.NoteJpaRepository;
 import com.nighthawk.spring_portfolio.mvc.person.Person;
 import com.nighthawk.spring_portfolio.mvc.person.PersonDetailsService;
-// import com.nighthawk.spring_portfolio.mvc.sortingalgorithms.SortingAlgs;
+//import com.nighthawk.spring_portfolio.mvc.sorting.SortedCarApiController;
 
 import java.util.List;
 
@@ -58,8 +58,9 @@ public class ModelInit {
                 List<Car> test = carRepo.list(name.getName());  // lookup
                 if (test.size() == 0) {
                     carRepo.save(name);
-                };                
+                };
             }
+            //System.out.println(carRepo.get(2));
 
             //SpringApplication.run(SortingAlgs.class, args);
 

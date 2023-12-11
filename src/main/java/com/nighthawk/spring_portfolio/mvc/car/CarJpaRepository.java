@@ -15,6 +15,8 @@ public interface CarJpaRepository extends JpaRepository<Car, Long> {
     Car findByName(String name);
     List<Car> findAllByOrderByNameAsc();
     List<Car> findByNameIgnoreCase(String name);
+    Car findByPrice(int price);
+    List<Car> findAllByOrderByPriceAsc();
     
     @Query(
             value = "SELECT * FROM Car p WHERE p.name LIKE ?1",

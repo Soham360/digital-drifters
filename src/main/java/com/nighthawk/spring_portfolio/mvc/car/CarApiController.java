@@ -23,6 +23,7 @@ public class CarApiController {
     public ResponseEntity<List<Car>> getCar() {
         return new ResponseEntity<>( repository.findAllByOrderByNameAsc(), HttpStatus.OK);
     }
+
     /*
     GET individual Car using ID
      */
@@ -30,10 +31,20 @@ public class CarApiController {
     public ResponseEntity<Car> getCar(@PathVariable long id) {
         Optional<Car> optional = repository.findById(id);
         if (optional.isPresent()) {  // Good ID
-            Car activity = optional.get();  // value from findByID
-            return new ResponseEntity<>(activity, HttpStatus.OK);  // OK HTTP response: status code, headers, and body
+            Car car = optional.get();  // value from findByID
+            return new ResponseEntity<>(car, HttpStatus.OK);  // OK HTTP response: status code, headers, and body
         }
         // Bad ID
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
+
+    // @GetMapping("/sortedids/{index}")
+    // public ResponseEntity<Car> getSortedCarByIndex(@PathVariable int index) {
+    //     List<Car> sortedCars = repository.findAllByOrderByPriceAsc();
+    //     if (index >= 0 && index < sortedCars.size()) {
+    //         Car car = sortedCars.get(index);
+    //         return new ResponseEntity<>(car, HttpStatus.OK);
+    //     }
+    //     return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    // }
 }

@@ -48,12 +48,16 @@ public class CarDetailsService {  // "implements" ties ModelRepo to Spring Secur
 
     public Car get(long id) {
         return (carJpaRepository.findById(id).isPresent())
-                ? carJpaRepository.findById(id).get()
-                : null;
+        ? carJpaRepository.findById(id).get()
+        : null;
     }
 
     public Car getByName(String name) {
         return (carJpaRepository.findByName(name));
+    }
+
+    public Car getByPrice(int price) {
+        return (carJpaRepository.findByPrice(price));
     }
     
 }
