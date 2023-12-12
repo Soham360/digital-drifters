@@ -21,41 +21,6 @@ public class Test {
     @Bean
     CommandLineRunner run1() {  // The run() method will be executed after the application starts
         return args -> {
-
-    //          Car[] carArray = Car.init();
-    //         for (Car name : carArray) {
-    //             List<Car> test = carRepo.list(name.getName());  // lookup
-    //             if (test.size() == 0) {
-    //                 carRepo.save(name);
-    //             };
-    //         }
-    //         System.out.println("Inside Test.java");
-    //         System.out.println(carRepo.get(5));
-    //         System.out.println(carRepo.get(5).getPrice());
-
-    //         // Parse the response body into an array of Car objects
-    //         //Car[] cars = Car.init();
-
-    //         // Create an instance of the sorting algorithm
-    //         SortingAlgorithm sortingAlgorithm = new BubbleSort();
-
-    //         // Sort the array of dog names
-    //         sortingAlgorithm.sort(carArray);
-
-    //         // Display sorting statistics
-    //         sortingAlgorithm.displayStatistics();
-
-
-    //         // Print the sorted Car names
-    //         Car[] sortedCarArray = carArray;
-    //         int i =0;
-    //         for (Car name : sortedCarArray) {
-
-    //             //System.out.println(name);
-    //             System.out.println(carRepo.getByPrice(name.getPrice() ));
-    //             i++;
-    //     }
-
         };
     }
 }
